@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Platypi", serif;
+  text-decoration: none;
+  list-style-type: none;
+}
+.form-box {
+  text-align: center;
+}
+.section-box {
+  margin-top: 100px;
+}
+.sidebar-start {
+  padding-left: 25px;
+  background-color: black;
+  color: white;
+}
+.sidebar-start span{
+  margin-left: 10px;
+  animation-play-state: running;
+}
+@keyframes marquee {
+  0% {
+    left: 100%;
+  }
+  
+  100% {
+    left: -100%;
+  }
+}
+.sidebar-start {
+  opacity: 1;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: marquee 30s linear infinite;
+}
+.sidebar-start {
+  animation-delay: 15s;
+}

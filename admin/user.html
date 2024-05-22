@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/user.css" />
+    <link rel="stylesheet" href="../css/home.css">
+</head>
+
+<body>
+
+    <header class="container">
+        <div class="col-left">
+            <a href=""><i class="fa-solid fa-bars" style="color: black;"></i></a>
+        </div>
+        <div class="col-center">
+
+            <a href="home.html"><img src="https://theme.hstatic.net/1000351433/1001171247/14/logo.png?v=631" alt=""></a>
+            <a href=""><img src="https://file.hstatic.net/1000351433/file/240x100_3ad6fedc038f4e13aba55fc46e785e19.png"
+                    alt=""></a>
+
+        </div>
+        <div class="col-right">
+            <a href=""><img src="https://file.hstatic.net/1000351433/file/loupe_9fd2a24ed9504b0c8d8fe6efb6654501.png"
+                    alt=""></a>
+
+            <a href="/Module_01/login.html"><img
+                    src="https://file.hstatic.net/1000351433/file/user_bfb942d5edb24fc895104e6524135e07.png" alt=""></a>
+
+            <a href=""><img src="https://www.svgrepo.com/show/132889/logout.svg" alt=""></a>
+        </div>
+    </header>
+
+    <section class="nav-bar">
+        <div>
+            <ul>
+                <li><a href="admincategory.html">Quản lý danh mục</a></li>
+                <li><a href="adminproduct.html">Quản lý sản phẩm</a></li>
+                <li><a href="user.html">Quản lý User</a></li>
+
+            </ul>
+        </div>
+        <div class="main-form">
+            <section id="form-scope" class="hidden" onsubmit="submitForm(event)">
+                <form id="form-product" class="form-product">
+                    <h4 style="text-align: center">Đăng ký</h4>
+                    <div class="scope-input">
+                        <label for="name" class="label-product">Name: </label>
+                        <input id="name" name="name" type="text" placeholder="Name" />
+                        <label for="email" class="label-product">Email: </label>
+                        <input type="email" placeholder="Email">
+                        <label for="email" class="label-product">Password: </label>
+                        <input type="password" name="" id="" placeholder="Mật Khẩu">
+                        <label for="email" class="label-product">Confirm Password: </label>
+                        <input type="password" name="" id="" placeholder="Nhập Lại Mật Khẩu">
+                        <div>
+                            <label for="gioitinh"  class="gioitinh">Giới Tính: </label>
+                            <div>
+                                <input type="radio" name="gioitinh" style="width: 20px;">
+                                <p>Nam</p>
+                                <input type="radio" name="gioitinh" style="width: 20px;">
+                                <p>Nữ</p>
+                            </div>
+
+                        </div>
+                        <label for="email" class="label-product">Ngày Sinh: </label>
+                        <input type="date" name="" id="" />
+                        <label for="email" class="label-product">Địa Chỉ: </label>
+                        <textarea name="" id=""></textarea>
+
+                        <p style="color: red;" id="error-name"></p>
+                    </div>
+
+                    <div style="display: flex; justify-content: center; gap: 12px">
+                        <button type="button" id="btn-cancel">Cancel</button>
+                        <button type="submit" id="btn-submit">Submit</button>
+                    </div>
+                </form>
+            </section>
+
+            <main style="width: 1200px; margin: 0 auto">
+                <section id="action" style="padding-top: 48px">
+                    <div style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                  ">
+                        <div>
+                            <button id="btn-add">Đăng ký</button>
+                        </div>
+
+                        <!-- <div>
+                            <span>Select: </span>
+                            <select name="category" onchange="changeCategory(event)">
+                                <option value="All">All</option>
+                                <option value="Laptop">Laptop</option>
+                                <option value="Mobile">Mobile</option>
+                                <option value="Loudspeaker">Loudspeaker</option>
+                            </select>
+                        </div> -->
+
+                        <div>
+                            <input type="text" id="text-search" />
+                            <button id="btn-search">Search</button>
+                        </div>
+                    </div>
+                </section>
+                <section id="table">
+                    <table>
+                        <caption style="font-weight: bold; font-size: 20px; margin: 12px">
+                            User table
+                        </caption>
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <!-- <th>Image</th> -->
+                                <th>Name</th>
+                                <!-- <th>Price</th> -->
+                                <!-- <th>Quantity</th> -->
+                                <!-- <th>Description</th> -->
+                                <!-- <th>Category</th> -->
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody"></tbody>
+                    </table>
+                </section>
+                <section id="pagination" style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: end;
+                  gap: 24px;
+                ">
+                    <div>
+                        <select name="" id="page-size">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                        </select>
+                    </div>
+                    <div style="display: flex; justify-content: end; align-items: center">
+                        <button>Previous</button>
+                        <p id="page-list"></p>
+                        <button>Next</button>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </section>
+
+
+
+    <script src="/Module_01/js/user.js"></script>
+</body>
+
+</html>
