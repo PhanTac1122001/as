@@ -9,12 +9,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Platypi:ital,wght@0,300..800;1,300..800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="/Module_01/css/register.css">
-    <link rel="stylesheet" href="/Module_01/css/home.css">
-    <link rel="stylesheet" href="/Module_01/css/allproduct.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/allproduct.css">
+    <script src="https://kit.fontawesome.com/58798f3d2b.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
+
     <header class="container">
         <div class="col-left">
             <a href="#"><i class="fa-solid fa-bars" style="color: black;"></i>
@@ -35,8 +37,9 @@
         </div>
         <div class="col-center">
 
-            <a href="home.html"><img src="https://theme.hstatic.net/1000351433/1001171247/14/logo.png?v=631" alt=""></a>
-            <a href="home.html"><img
+            <a href="../pages/home.html"><img src="https://theme.hstatic.net/1000351433/1001171247/14/logo.png?v=631"
+                    alt=""></a>
+            <a href="../pages/home.html"><img
                     src="https://file.hstatic.net/1000351433/file/240x100_3ad6fedc038f4e13aba55fc46e785e19.png"
                     alt=""></a>
 
@@ -57,7 +60,32 @@
 
     </header>
     <section class="sidebar">
-        
+        <div class="container-ef">
+            <div class="text">
+                <span>Bad Habbit Store</span>
+                <span>Bad Habbit Store</span>
+                <span>Bad Habbit Store</span>
+                <span>Bad Habbit Store</span>
+                <span>Bad Habbit Store</span>
+                <span>Bad Habbit Store</span>
+                <span>Bad Habbit Store</span>
+                <span>Bad Habbit Store</span>
+                <span>Bad Habbit Store</span>
+                <span>Bad Habbit Store</span>
+            </div>
+            <div class="text">
+                <span>Bad Habbit Store</span>
+                <span>Bad Habbit Store</span>
+                <span>Bad Habbit Store</span>
+                <span>Bad Habbit Store</span>
+                <span>Bad Habbit Store</span>
+                <span>Bad Habbit Store</span>
+                <span>Bad Habbit Store</span>
+                <span>Bad Habbit Store</span>
+                <span>Bad Habbit Store</span>
+                <span>Bad Habbit Store</span>
+            </div>
+        </div>
         <div class="list-sidebar">
             <ul>
                 <li><a href="allproduct.html">Tất cả sản phẩm</a></li>
@@ -88,26 +116,24 @@
         </div>
     </section>
     <main class="form-box-login">
-        <h1>Đăng Ký Tài Khoản</h1>
-        <form action="" class="form-login">
-            <input type="email" placeholder="Email">
-            <input type="password" name="" id="" placeholder="Mật Khẩu">
-            <input type="password" name="" id="" placeholder="Nhập Lại Mật Khẩu">
-            <input type="text" name="" id="" placeholder="Họ">
-            <input type="text" name="" id="" placeholder="Tên">
-            <div>
-                <input type="radio" name="gioitinh" style="width: 20px;">
-                <p>Nam</p>
-                <input type="radio" name="gioitinh" style="width: 20px;">
-                <p>Nữ</p>
+        <h1>Đăng Nhập</h1>
+        <form class="form-login" id="form">
+            <input type="email" placeholder="Email" id="email" name="email">
+            <input type="password" id="" placeholder="Mật Khẩu" id="password" name="password">
+            <div class="btn-login">
+                <div>
+                    <button type="submit" id="login">Đăng nhập</button>
+                </div>
+                <div>
+                    <a href="">Quên mật khẩu?</a>
+                    <a href="register.html">Đăng ký</a>
+                </div>
+
             </div>
 
-            <input type="date" name="" id="">
-            
-            
-            <button>Đăng ký</button>
 
-            <a href="">Quay lại trang chủ</a>
+
+
         </form>
 
     </main>
@@ -169,9 +195,9 @@
             </ul>
         </div>
     </footer>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://kit.fontawesome.com/58798f3d2b.js" crossorigin="anonymous"></script>
-
+    <script src="../js/login.js"></script>
 
 </body>
 

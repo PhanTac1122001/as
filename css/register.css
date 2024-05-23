@@ -26,9 +26,11 @@
   border-radius: 5px;
   padding-left: 10px;
   background-color: rgba(199, 199, 199, 0.926);
+
+  margin-top: 10px;
 }
 
-.form-login input:focus{
+.form-login input:focus {
   width: 500px;
   height: 50px;
   border-radius: 5px;
@@ -36,12 +38,10 @@
   background-color: rgb(255, 255, 255);
 }
 .form-login div {
-  display: flex;
+  display: block;
   gap: 5px;
-
   justify-content: flex-start;
   align-items: center;
-  margin-left: -380px;
 }
 .form-login div {
   text-align: center;
@@ -57,4 +57,27 @@
 }
 .form-login button:active {
   background-color: blue;
+}
+
+.form-box-regiter span {
+  position: absolute;
+  display: flex;
+  top: 38px;
+  left: 0;
+  width: 0%;
+  transition: 0.3s;
+}
+
+.form-box-regiter input:focus ~ span {
+  width: 100%;
+}
+
+.form-box-regiter.error small {
+  display: block;
+  text-align: left;
+  color: #e74c3c;
+}
+
+.form-box-regiter.error input {
+  border-bottom: 2px solid #e74c3c;
 }

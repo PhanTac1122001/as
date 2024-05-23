@@ -1,63 +1,4 @@
-// const listProduct = [
-//     {
-//         id: 1,
-//         name: "áo trắng",
-//         size: "XL",
-//         price: 200000,
-//         quantity: 10,
-//         status: "Còn hàng"
-//     },
-//     {
-//         id: 1,
-//         name: "áo trắng",
-//         size: "XL",
-//         price: 200000,
-//         quantity: 10,
-//         status: "Còn hàng"
-//     }
-// ]
 
-// let jsonProduct = JSON.stringify(listProduct);
-// // jsonProduct =JSON.parse(jsonProduct);
-
-// localStorage.setItem("name", 'caovl')
-// localStorage.setItem(listProduct, jsonProduct)
-// console.log(jsonProduct);
-// console.log(jsonProduct.splice(0,1));
-
-// //read hiện thị sản phẩm ra html
-// function render() {
-//     const tableProduct = document.getElementById("table-product")
-//     let stringHTML = ``;
-//     for (let i in listProduct) {
-//         stringHTML += `
-//         <tr>
-//             <td>${listProduct[i].id}</td>
-//             <td>${listProduct[i].name}</td>
-//             <td>${listProduct[i].size}</td>
-//             <td>${listProduct[i].price}</td>
-//             <td>${listProduct[i].quantity}</td>
-//             <td>${listProduct[i].status}</td>
-//             <td><button>Update</button>
-//             <button>Delete</button>
-//             </td>
-//             </tr>
-//                 `
-//     }
-//     tableProduct.innerHTML = stringHTML;
-// }
-// render();
-
-
-
-// function addProduct() {
-//     const addNew = inputHTML.value;
-//     listProduct.push(addNew);
-//     inputHTML.value = "";
-//     render();
-
-
-// }
 
 const btnAdd = document.getElementById("btn-add")
 const form = document.getElementById("form-scope")
@@ -233,4 +174,16 @@ function changeStatus(id) {
     localStorage.setItem(CATEGORY_LOCAL, JSON.stringify(categorys))
 
     render();
+}
+
+function logOut() {
+
+    localStorage.removeItem("user_login")
+    return Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Đăng xuất thành công",
+        showConfirmButton: false,
+        timer: 1500,
+    }).then(() => (window.location.href = "../pages/home.html"));
 }

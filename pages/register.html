@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bad Habits</title>
+    <title>Document</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Platypi:ital,wght@0,300..800;1,300..800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="/Module_01/css/home.css">
-    <link rel="stylesheet" href="css/cartproduct.css">
-    <script src="https://kit.fontawesome.com/58798f3d2b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/register.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/allproduct.css">
 </head>
 
 <body>
@@ -87,29 +87,43 @@
             </ul>
         </div>
     </section>
-    <main class="main-cart">
-        <h2>Giỏ hàng</h2>
-        <div>
-            <table class="table-form">
-                <thead>
-                    <tr>
-                        <th colspan="2">Sản Phẩm</th>
-                        <th>Số Lượng</th>
-                        <th>Size</th>
-                        <th>Giá</th>
-                    </tr>
-                </thead>
-                
-                <tr>
-                    <td><img style="width: 20%;" src="https://product.hstatic.net/1000351433/product/5672_96fa3e3cf3734f34af79df96fc964824_grande.jpg" alt=""></td>
-                    <td>YEAR OF DRAGON SHIRT</td>
-                    <td>1</td>
-                    <td>XL</td>
-                    <td>600.000VND</td>
-                </tr>
-            </table>
-        </div>
+    <main class="form-box-login">
+        <h1>Đăng Ký Tài Khoản</h1>
+        <form onsubmit="submitForm(event)" class="form-login" id="form-regiter">
+            <div class="form-box-regiter">
+                <input type="text" name="name" id="name" placeholder="Họ và Tên">
+                <small></small>
+                <span></span>
+            </div>
+
+            <div class="form-box-regiter">
+                <input type="email" placeholder="Email" name="email" id="email">
+                <small></small>
+                <span></span>
+            </div>
+            <div class="form-box-regiter">
+                <input type="password" name="password" id="password" placeholder="Mật Khẩu" id="password">
+                <small></small>
+                <span></span>
+            </div>
+
+            <div class="form-box-regiter">
+                <input type="password" name="confirmpassword" id="confirmpassword" placeholder="Nhập Lại Mật Khẩu">
+                <small></small>
+                <span></span>
+            </div>
+            <button class="btn-submit" type="submit">Đăng ký</button>
+
+            <a href="../pages/home.html">Quay lại trang chủ</a>
+        </form>
+
     </main>
+    <section class="banner-title">
+
+        <h1>BAD HABITS DIGITAL RETAIL STORE</h1>
+
+    </section>
+
     <footer>
         <div class="footer-col-left">
             <b>Follow Bad Habit club&reg; in</b>
@@ -162,8 +176,11 @@
             </ul>
         </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/register.js"></script>
+    <script src="https://kit.fontawesome.com/58798f3d2b.js" crossorigin="anonymous"></script>
 
-    <script src="new.js"></script>
+
 </body>
 
 </html>

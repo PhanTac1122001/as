@@ -1,84 +1,39 @@
-// const listProduct = [
-//     {
-//         id: 1,
-//         name: "áo trắng",
-//         size: "XL",
-//         price: 200000,
-//         quantity: 10,
-//         status: "Còn hàng"
-//     },
-//     {
-//         id: 1,
-//         name: "áo trắng",
-//         size: "XL",
-//         price: 200000,
-//         quantity: 10,
-//         status: "Còn hàng"
-//     }
-// ]
-
-// let jsonProduct = JSON.stringify(listProduct);
-// // jsonProduct =JSON.parse(jsonProduct);
-
-// localStorage.setItem("name", 'caovl')
-// localStorage.setItem(listProduct, jsonProduct)
-// console.log(jsonProduct);
-// console.log(jsonProduct.splice(0,1));
-
-// //read hiện thị sản phẩm ra html
-// function render() {
-//     const tableProduct = document.getElementById("table-product")
-//     let stringHTML = ``;
-//     for (let i in listProduct) {
-//         stringHTML += `
-//         <tr>
-//             <td>${listProduct[i].id}</td>
-//             <td>${listProduct[i].name}</td>
-//             <td>${listProduct[i].size}</td>
-//             <td>${listProduct[i].price}</td>
-//             <td>${listProduct[i].quantity}</td>
-//             <td>${listProduct[i].status}</td>
-//             <td><button>Update</button>
-//             <button>Delete</button>
-//             </td>
-//             </tr>
-//                 `
-//     }
-//     tableProduct.innerHTML = stringHTML;
-// }
-// render();
-
-
-
-// function addProduct() {
-//     const addNew = inputHTML.value;
-//     listProduct.push(addNew);
-//     inputHTML.value = "";
-//     render();
-
-
-// }
 
 const btnAdd = document.getElementById("btn-add")
 const form = document.getElementById("form-scope")
-const categoryName = document.getElementById('name')
+const userName = document.getElementById('name')
+const email = document.getElementById('email')
+const password = document.getElementById('password')
+const gender = document.getElementById('gender')
 const errorName = document.getElementById("error-name")
 const btnCancel = document.getElementById("btn-cancel")
 const btnSubmit = document.getElementById("btn-submit")
 const btnSearch = document.getElementById("btn-search")
-const tableCategory = document.getElementById("tbody")
+const btnStatus = document.getElementById("btn-status")
+const tableUser = document.getElementById("tbody");
+
+const pageList = document.getElementById('page-list');
 
 let idUpdate = null;
-const CATEGORY_LOCAL = "categorys";
+const USER_LOCAL = "userList";
+
+let sortBy = "All"
+let pageSize = 5;
+let totalPage = 1;
+let currentPage = 1;
+
+let textSearch = "";
+let userFilter = "All";
+
 
 btnSearch.addEventListener("click", function () {
     const textSearch = document.getElementById("text-search").value.toLowerCase();
 
-    const categorys = JSON.parse(localStorage.getItem(CATEGORY_LOCAL))
+    const userList = JSON.parse(localStorage.getItem(USER_LOCAL))
 
-    const categoryFilter = categorys.filter(item => item.name.toLowerCase().includes(textSearch))
+    const userFilter = userList.filter(item => item.name.toLowerCase().includes(textSearch))
 
-    render(categoryFilter);
+    render(userFilter);
 })
 
 btnAdd.addEventListener('click', function () {
@@ -86,24 +41,26 @@ btnAdd.addEventListener('click', function () {
 })
 
 btnCancel.addEventListener("click", function () {
-    categoryName.value = '';
+    userName.value = '';
+    email.value = '';
+    password.value = '';
     errorName.innerHTML = '';
-    btnSubmit.innerText = "Add";
+    btnSubmit.innerText = "Đăng ký";
     idUpdate = null;
     form.classList.add("hidden");
 })
 function submitForm(event) {
     event.preventDefault();
     if (idUpdate) {
-        const categorys = JSON.parse(localStorage.getItem(CATEGORY_LOCAL)) || [];
-        if (categoryName.value.length < 2) {
+        const userList = JSON.parse(localStorage.getItem(USER_LOCAL)) || [];
+        if (userName.value.length < 2) {
             errorName.innerText = `Lỗi`;
             return;
         } else {
             errorName.innerText = ``;
         }
 
-        const index = categorys.findIndex(item => item.name === categoryName.value)
+        const index = userList.findIndex(item => item.name === userName.value)
         if (index !== -1) {
             errorName.innerText = "Name bị trùng";
             return
@@ -111,17 +68,12 @@ function submitForm(event) {
         else {
             errorName.innerText = "";
         }
-        const indexUpdate = categorys.findIndex(item => item.id === idUpdate)
-        categorys[indexUpdate].name = categoryName.value;
-        localStorage.setItem(CATEGORY_LOCAL, JSON.stringify(categorys))
-
+        const indexUpdate = userList.findIndex(item => item.id === idUpdate)
+        userList[indexUpdate].name = userName.value;
+        localStorage.setItem(USER_LOCAL, JSON.stringify(userList))
         btnCancel.click()
-
         idUpdate = null;
         render()
-
-
-
         return
     }
     else {
@@ -129,18 +81,18 @@ function submitForm(event) {
     }
 
     let id = 1;
-    const categorys = JSON.parse(localStorage.getItem(CATEGORY_LOCAL)) || [];
-    if (categorys.length > 0) {
-        id = categorys[categorys.length - 1].id + 1
+    const userList = JSON.parse(localStorage.getItem(USER_LOCAL)) || [];
+    if (userList.length > 0) {
+        id = userList[userList.length - 1].id + 1
     }
-    if (categoryName.value.length < 2) {
+    if (userName.value.length < 2) {
         errorName.innerText = `Lỗi`;
         return;
     } else {
         errorName.innerText = ``;
     }
 
-    const index = categorys.findIndex(item => item.name === categoryName.value)
+    const index = userList.findIndex(item => item.name === userName.value)
     if (index !== -1) {
         errorName.innerText = "Name bị trùng";
         return
@@ -148,48 +100,126 @@ function submitForm(event) {
     else {
         errorName.innerText = "";
     }
-    const category = {
+    const user = {
         id,
-        name: categoryName.value,
+        name: userName.value,
+        email: email.value,
+        password: password.value,
+        gender: gender.value,
         status: true,
-
+        role: true,
     }
 
-    categorys.push(category)
+    userList.push(user)
 
-    localStorage.setItem(CATEGORY_LOCAL, JSON.stringify(categorys))
+    localStorage.setItem(USER_LOCAL, JSON.stringify(userList))
 
 
-    categoryName.value = "";
+    userName.value = "";
 
     form.classList.add("hidden")
 
     render();
 
 }
+function renderPaginations(users) {
+
+    totalPage = Math.ceil(users.length / pageSize); //làm trên lên 
+    let stringHTML = ""
+    for (let i = 1; i <= totalPage; i++) {
+        if (currentPage === i) {
+            stringHTML += `
+            <span class="page-item page-active" onclick="clickPage(${i})">${i}</span>
+            `
+        }
+        else {
+            stringHTML += `
+            <span class="page-item " onclick="clickPage(${i})">${i}</span>
+            `
+        }
+    }
+    pageList.innerHTML = stringHTML;
+}
 
 function render(data) {
-    let categorys = JSON.parse(localStorage.getItem(CATEGORY_LOCAL));
+    let userList = JSON.parse(localStorage.getItem(USER_LOCAL));
+
     if (Array.isArray(data)) {
-        categorys = data
+        userList = data
     }
 
+    if (sortBy == "aToZ") {
+        userList = userList.sort(function (a, b) {
+            var x = a.name.toLowerCase();
+            var y = b.name.toLowerCase();
+            return x < y ? -1 : x > y ? 1 : 0;
+        })
+    }
+    else if (sortBy == "zToA") {
+        userList = userList.sort(function (a, b) {
+            var x = a.name.toLowerCase();
+            var y = b.name.toLowerCase();
+            return x > y ? -1 : x < y ? 0 : 1;
+        })
+    }
+    else if (sortBy == "STTAscending") {
+        userList = userList.sort();
+    }
+    else if (sortBy == "STTDescending") {
+        userList = userList.reverse();
+    }
 
-    let stringHTML = ``;
+    else if (sortBy !== "All") {
+        userList = userList.filter(
+            (user) => user.name === sortBy
+        );
+    }
+    // if (userFilter !== 'All') {
+    //     userList = userList.filter(user => user.category === categoryFilter);
+    // }
 
-    for (let i in categorys) {
-        stringHTML += `<tr>
-    <td>${categorys[i].id}</td>
-    <td>${categorys[i].name}</td>
-    <td>${categorys[i].status ? "Active" : "Block"}</td>
-    <td>
-    <button onclick="initUpdate(${categorys[i].id})">Update</button>
-    <button onclick="changeStatus(${categorys[i].id})">${categorys[i].status ? "Block" : "Active"}</button>
-    
-    </td>
-    </tr>
-    `}
-    tableCategory.innerHTML = stringHTML;
+
+
+    renderPaginations(userList);S
+    renderUser(userList);
+}
+function renderUser(users) {
+    let stringHTML = ""
+    let start = (currentPage - 1) * pageSize;
+    let end = start + pageSize
+    if (end > users.length) {
+        end = users.length
+    }
+    for (let i = start; i < end; i++) {
+
+        if (users[i].email === "admin@gmail.com") {
+            stringHTML += `<tr>
+        <td>${users[i].id}</td>
+         <td>${users[i].name}</td>
+        <td>${users[i].email}</td>
+        <td>${users[i].password}</td>
+         <td>${users[i].status ? "Active" : "Block"}</td>
+        <td>${users[i].role ? "User" : "Admin"}</td>
+        </tr>`
+        }
+        else {
+            stringHTML += `<tr>
+        <td>${users[i].id}</td>
+        <td>${users[i].name}</td>
+        <td>${users[i].email}</td>
+        <td>${users[i].password}</td>
+        <td>${users[i].status ? "Active" : "Block"}</td>
+        <td>${users[i].role ? "User" : "Admin"}</td>
+        <td>
+        <button class="btn-status" onclick="changeStatus(${users[i].id})">${users[i].status ? "<div  class= 'btn-block' >Block</div>" : "<div  class= 'btn-active' >Active</div>"}</button>
+        
+        </td>
+        </tr>
+        `}
+    }
+    tableUser.innerHTML = stringHTML;
+
+
 }
 
 render();
@@ -201,12 +231,12 @@ function deleteCategorys(id) {
     if (!result) {
         return;
     }
-    const categorys = JSON.parse(localStorage.getItem(CATEGORY_LOCAL))
+    const userList = JSON.parse(localStorage.getItem(USER_LOCAL))
 
-    const index = categorys.findIndex(item => item.id === id);
+    const index = userList.findIndex(item => item.id === id);
 
-    categorys.splice(index, 1)
-    localStorage.setItem(CATEGORY_LOCAL, JSON.stringify(categorys));
+    userList.splice(index, 1)
+    localStorage.setItem(USER_LOCAL, JSON.stringify(userList));
 
     render();
 }
@@ -214,23 +244,62 @@ function deleteCategorys(id) {
 
 function initUpdate(id) {
     idUpdate = id;
-    const categorys = JSON.parse(localStorage.getItem(CATEGORY_LOCAL))
+    const userList = JSON.parse(localStorage.getItem(USER_LOCAL))
 
-    const index = categorys.findIndex(item => item.id === id)
+    const index = userList.findIndex(item => item.id === id)
 
-    categoryName.value = categorys[index].name;
+    userName.value = userList[index].name;
     form.classList.remove("hidden")
     btnSubmit.innerText = "Update";
 }
 
 function changeStatus(id) {
-    const categorys = JSON.parse(localStorage.getItem(CATEGORY_LOCAL))
+    const userList = JSON.parse(localStorage.getItem(USER_LOCAL))
 
-    const index = categorys.findIndex(item => item.id === id)
+    const index = userList.findIndex(item => item.id === id)
 
-    categorys[index].status = !categorys[index].status
+    userList[index].status = !userList[index].status
 
-    localStorage.setItem(CATEGORY_LOCAL, JSON.stringify(categorys))
+    localStorage.setItem(USER_LOCAL, JSON.stringify(userList))
 
     render();
 }
+function logOut() {
+
+    localStorage.removeItem("user_login")
+    return Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Đăng xuất thành công",
+        showConfirmButton: false,
+        timer: 1500,
+    }).then(() => (window.location.href = "../pages/home.html"));
+
+}
+
+function clickPage(i) {
+    currentPage = i;
+    render();
+}
+function changePage(status) {
+    if (status === -1 && currentPage > 1) {
+        currentPage -= 1;
+    }
+    if (status === 1 && currentPage < totalPage) {
+        currentPage += 1;
+    }
+    render();
+}
+function changePageSize(e) {
+    pageSize = e.target.value;
+    currentPage = 1;
+    render();
+}
+
+function changeUser(e) {
+
+    sortBy = e.target.value;
+    currentPage = 1;
+    render();
+}
+

@@ -1,17 +1,14 @@
 
-let btn = document.getElementById("login");
+
 let form = document.getElementById("form");
 
 form.onsubmit = function (e) {
     e.preventDefault();
-
     let userList = JSON.parse(localStorage.getItem("userList")) || [];
     let email = form.email.value;
     let password = form.password.value;
-    console.log(form.email.value, form.password.value);
-
     if (email === "admin@gmail.com" && password === "admin") {
-        window.location.href = "../Module_01/admin/user.html"
+        window.location.href = "../admin/user.html";
         return;
     }
 
@@ -20,15 +17,40 @@ form.onsubmit = function (e) {
         password: password,
     }
 
+    const userIndex = userList.findIndex((item) => item.email === userForm.email);
+
     const userFind = userList.find(item => item.email === userForm.email && item.password === userForm.password)
     // console.log(user);
     if (!userFind) {
-        alert("Khong tim thay");
+        Swal.fire({
+            title: "Error!",
+            text: "Không Tìm Thấy !!!",
+            icon: "error",
+            confirmButtonText: "Cancel",
+        });
         return;
     }
     //tìm thấy
     //lưu thông tin lên local
-    localStorage.setItem("user_login", JSON.stringify(userFind));
     //chuyển trang
-    window.location.href = "./home.html";
+    if (userList[userIndex].status === false) {
+        Swal.fire({
+            title: "Error!",
+            text: "Email bạn đã bị khóa !!!",
+            icon: "error",
+            confirmButtonText: "Cancel",
+        });
+    }
+    else {
+        localStorage.setItem("user_login", JSON.stringify(userFind));
+        Swal.fire({
+            position: "center",
+            icon: "Success",
+            title: "Đăng nhập thành công",
+            showConfirmButton: false,
+            timer: 1500,
+        }).then(() => (window.location.href = "../admin/user.html"));
+    }
+
 }
+
